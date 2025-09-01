@@ -12,7 +12,7 @@
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --build",
-    "lint": "oxlint . --fix -D correctness --ignore-path .gitignore",
+    "lint": "oxlint . --type-aware --fix -D correctness --ignore-path .gitignore",
     "format": "prettier --write src/"
   },
   "dependencies": {
@@ -28,7 +28,8 @@
     "@vue/tsconfig": "^0.7.0",
     "jiti": "^2.4.2",
     "npm-run-all2": "^8.0.4",
-    "oxlint": "~1.8.0",
+    "oxlint": "^1.14.0",
+    "oxlint-tsgolint": "^0.1.5",
     "prettier": "3.6.2",
     "typescript": "~5.8.0",
     "vite": "npm:rolldown-vite@latest",

@@ -1,0 +1,28 @@
+pre-commit:
+  parallel: true
+  jobs:
+    - name: frontend
+      root: frontend
+      glob: "*.{js,ts,jsx,tsx,vue}"
+      group:
+        jobs:
+          - name: format
+            run: npx prettier --write --check {staged_files}
+            stage_fixed: true
+          - name: lint
+            run: npx oxlint {staged_files} -D correctness --ignore-path .gitignore
+
+    - name: backend
+      glob: "*.go"
+      group:
+        jobs:
+          - name: format
+            run: go tool goimports -w {staged_files}
+            stage_fixed: true
+          - name: lint
+            run: go vet {staged_files}
+
+commit-msg:
+  jobs:
+    - name: lint commit message
+      run: go tool commitlint lint --message={1}
